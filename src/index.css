@@ -1,0 +1,345 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-emerald: #064e3b;
+  --primary-emerald-dark: #022c22;
+  --gold-accent: #d97706;
+  --cream-bg: #fdfbf7;
+}
+
+html, body {
+  scroll-behavior: smooth;
+  background-color: var(--cream-bg);
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  position: relative;
+}
+
+/* ================================================================
+   PAGE LOAD ENTRANCE ANIMATIONS (Non-overflowing)
+   ================================================================ */
+
+/* Navbar slides down from top on load */
+@keyframes navbarSlideDown {
+  0%   { opacity: 0; transform: translateY(-100%); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.nav-entrance {
+  animation: navbarSlideDown 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Hero section: left content fades + slides gently from left */
+@keyframes heroFadeInLeft {
+  0%   { opacity: 0; transform: translateX(-24px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+.hero-entrance-left {
+  animation: heroFadeInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+/* Hero right image fades + slides gently from right */
+@keyframes heroFadeInRight {
+  0%   { opacity: 0; transform: translateX(24px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+.hero-entrance-right {
+  animation: heroFadeInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+/* ================================================================
+   SCROLL-REVEAL BASE STATES (Gentle & Stable - No Layout Shift)
+   ================================================================ */
+
+/* --- Fade Up (default) --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Fade Left (gentle 16px slide) --- */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-18px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* --- Fade Right (gentle 16px slide) --- */
+.reveal-right {
+  opacity: 0;
+  transform: translateX(18px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* --- Scale In (gentle & stable without spring overshoot) --- */
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.97) translateY(14px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-scale.is-visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* --- Fade only (no movement) --- */
+.reveal-fade {
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  will-change: opacity;
+}
+.reveal-fade.is-visible {
+  opacity: 1;
+}
+
+/* --- Flip In (for stat/number boxes) --- */
+.reveal-flip {
+  opacity: 0;
+  transform: perspective(600px) rotateX(25deg) translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-flip.is-visible {
+  opacity: 1;
+  transform: perspective(600px) rotateX(0deg) translateY(0);
+}
+
+/* ================================================================
+   STAGGER DELAYS — apply alongside reveal-* classes
+   ================================================================ */
+.delay-0   { transition-delay: 0ms !important; }
+.delay-75  { transition-delay: 75ms !important; }
+.delay-100 { transition-delay: 100ms !important; }
+.delay-150 { transition-delay: 150ms !important; }
+.delay-200 { transition-delay: 200ms !important; }
+.delay-250 { transition-delay: 250ms !important; }
+.delay-300 { transition-delay: 300ms !important; }
+.delay-400 { transition-delay: 400ms !important; }
+.delay-500 { transition-delay: 500ms !important; }
+.delay-600 { transition-delay: 600ms !important; }
+.delay-700 { transition-delay: 700ms !important; }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #fdfbf7;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1b894;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a38258;
+}
+
+/* Glassmorphism */
+.glass-nav {
+  background: rgba(253, 251, 247, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(245, 230, 211, 0.7);
+}
+
+/* Gold Gradient Text & Effects */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #b45309 0%, #d97706 50%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.emerald-gradient-bg {
+  background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
+}
+
+/* Pulse animation for WhatsApp */
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+  70% { transform: scale(1); box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.wa-pulse {
+  animation: pulse-ring 2.2s infinite ease-in-out;
+}
+
+/* Shimmer animation for badges */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.shimmer-badge {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-badge::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 2.5s infinite;
+}
+
+/* Slide Animations for Boxes & Text */
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-45px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(45px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes marqueeLeftToRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes marqueeRightToLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-slide-in-left {
+  animation: slideInFromLeft 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-slide-in-right {
+  animation: slideInFromRight 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-slide-in-bottom {
+  animation: slideInFromBottom 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-marquee-l2r {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeftToRight 35s linear infinite;
+}
+
+.animate-marquee-r2l {
+  display: flex;
+  width: max-content;
+  animation: marqueeRightToLeft 35s linear infinite;
+}
+
+.animate-marquee-l2r:hover,
+.animate-marquee-r2l:hover {
+  animation-play-state: paused;
+}
+
+.animation-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animation-delay-500 {
+  animation-delay: 500ms;
+}
+
+/* Hide scrollbar for clean carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Print receipt styling */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-receipt, #printable-receipt * {
+    visibility: visible;
+  }
+  #printable-receipt {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: white;
+  }
+}
+

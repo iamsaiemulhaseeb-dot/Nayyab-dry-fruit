@@ -1,0 +1,131 @@
+[
+  {
+    "_id": "ord_1794762477581u8yvv",
+    "orderId": "NYB-765405",
+    "customer": {
+      "name": "saiem haseeb",
+      "phone": "03459116233",
+      "city": "Lahore",
+      "address": "House No. 24, Street No. 173 Imam Ghazali",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "phool-makhana",
+        "name": "Crispy Roasted Phool Makhana (Lotus Seeds)",
+        "weightLabel": "500g",
+        "multiplier": 0.5,
+        "price": 1200,
+        "unitPrice": 1200,
+        "quantity": 1,
+        "itemTotal": 1200,
+        "image": "/phool makhna.jpg"
+      },
+      {
+        "productId": "pure-honey",
+        "name": "Pure Sidr Wild Honey (Raw Beri Honey)",
+        "weightLabel": "500g",
+        "multiplier": 0.5,
+        "price": 1700,
+        "unitPrice": 1700,
+        "quantity": 1,
+        "itemTotal": 1700,
+        "image": "/honey.jpg"
+      },
+      {
+        "productId": "royal-mix-box",
+        "name": "Nayyab Royal Mix Dry Fruit Platter",
+        "weightLabel": "1 kg",
+        "multiplier": 1,
+        "price": 4950,
+        "unitPrice": 4950,
+        "quantity": 2,
+        "itemTotal": 9900,
+        "image": "/dry fruit plater.jpg"
+      },
+      {
+        "productId": "kaju-premium",
+        "name": "Royal Roasted Kaju (Cashew Nuts)",
+        "weightLabel": "1 kg",
+        "multiplier": 1,
+        "price": 4000,
+        "unitPrice": 4000,
+        "quantity": 1,
+        "itemTotal": 4000,
+        "image": "/kaju.jpg"
+      }
+    ],
+    "subtotal": 16800,
+    "deliveryFee": 0,
+    "discount": 0,
+    "total": 16800,
+    "paymentMethod": "Cash on Delivery (COD)",
+    "status": "pending",
+    "createdAt": "2026-11-15T17:07:57.581Z",
+    "updatedAt": "2026-11-15T17:07:57.581Z"
+  },
+  {
+    "_id": "ord_1794567291204odh31",
+    "orderId": "NYB-471065",
+    "customer": {
+      "name": "saiem haseeb",
+      "phone": "03459116233",
+      "city": "Lahore",
+      "address": "House No. 24, Street No. 173 Imam Ghazali",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "kaju-premium",
+        "name": "Royal Roasted Kaju (Cashew Nuts)",
+        "weightLabel": "1 kg",
+        "multiplier": 1,
+        "price": 4000,
+        "unitPrice": 4000,
+        "quantity": 2,
+        "itemTotal": 8000,
+        "image": "/kaju.jpg"
+      }
+    ],
+    "subtotal": 8000,
+    "deliveryFee": 0,
+    "discount": 0,
+    "total": 8000,
+    "paymentMethod": "Cash on Delivery (COD)",
+    "status": "pending",
+    "createdAt": "2026-11-13T10:54:51.204Z",
+    "updatedAt": "2026-11-13T10:54:51.205Z"
+  },
+  {
+    "_id": "ord_1794565814382raqni",
+    "orderId": "NYB-356968",
+    "customer": {
+      "name": "saiem haseeb",
+      "phone": "03459116233",
+      "city": "Lahore",
+      "address": "House No. 24, Street No. 173 Imam Ghazali",
+      "notes": ""
+    },
+    "items": [
+      {
+        "productId": "kaju-premium",
+        "name": "Royal Roasted Kaju (Cashew Nuts)",
+        "weightLabel": "1 kg",
+        "multiplier": 1,
+        "price": 4000,
+        "unitPrice": 4000,
+        "quantity": 2,
+        "itemTotal": 8000,
+        "image": "/kaju.jpg"
+      }
+    ],
+    "subtotal": 8000,
+    "deliveryFee": 0,
+    "discount": 0,
+    "total": 8000,
+    "paymentMethod": "Cash on Delivery (COD)",
+    "status": "pending",
+    "createdAt": "2026-11-13T10:30:14.383Z",
+    "updatedAt": "2026-11-13T10:30:14.383Z"
+  }
+]

@@ -1,0 +1,9 @@
+====================================================
+  🥜 NAYYAB DRY FRUIT BACKEND SERVER RUNNING       
+  Proprietor: Hafiz Yasir (Baghbanpura, Lahore)    
+  Storage: Local JSON Files (backend/data/)        
+  Port: 5000 | Environment: development 
+  Health Check: http://localhost:5000/api/health 
+  Products API: http://localhost:5000/api/products
+  Orders API:   http://localhost:5000/api/orders  
+====================================================
