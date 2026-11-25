@@ -8,8 +8,12 @@ const UPLOADS_DIR = path.join(__dirname, '../../public/uploads');
 const GENERIC_FALLBACK =
   'https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=800&q=80';
 
-if (!fs.existsSync(UPLOADS_DIR)) {
-  fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+try {
+  if (!fs.existsSync(UPLOADS_DIR)) {
+    fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+  }
+} catch (err) {
+  console.warn('[productController] Uploads dir skipped (safe on read-only serverless):', err.message);
 }
 
 const saveBase64Image = (base64String, filename) => {
@@ -27,8 +31,13 @@ const saveBase64Image = (base64String, filename) => {
     .toLowerCase()
     .replace(/\.[^.]+$/, '') + '.' + ext;
 
-  fs.writeFileSync(path.join(UPLOADS_DIR, safe), Buffer.from(data, 'base64'));
-  return '/uploads/' + safe;
+  try {
+    fs.writeFileSync(path.join(UPLOADS_DIR, safe), Buffer.from(data, 'base64'));
+    return '/uploads/' + safe;
+  } catch (err) {
+    console.warn('[saveBase64Image] Skipping disk write on serverless:', err.message);
+    return base64String; // Store or return data URL if filesystem is read-only
+  }
 };
 
 const deleteImageFile = (imagePath) => {

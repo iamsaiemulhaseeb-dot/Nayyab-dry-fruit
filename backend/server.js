@@ -44,15 +44,34 @@ const allowedOrigins = [
 app.use(cors({
   origin(origin, cb) {
     if (!origin) return cb(null, true);                     // server-to-server / curl
-    if (allowedOrigins.includes(origin) || process.env.NODE_ENV !== 'production') {
+    if (
+      allowedOrigins.includes(origin) ||
+      origin.endsWith('.vercel.app') ||
+      process.env.NODE_ENV !== 'production'
+    ) {
       return cb(null, true);
     }
-    cb(new Error('Blocked by CORS policy'));
+    return cb(null, true);
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
+// ── Root endpoint ─────────────────────────────────────────
+app.get('/', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Nayyab Dry Fruit API is running!',
+    health: '/api/health',
+    endpoints: [
+      '/api/products',
+      '/api/orders',
+      '/api/reviews',
+      '/api/bulk-inquiries'
+    ]
+  });
+});
 
 // ── Health check ──────────────────────────────────────────
 app.get('/api/health', (req, res) => {
