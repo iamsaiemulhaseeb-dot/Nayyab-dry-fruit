@@ -1,11 +1,19 @@
 const mongoose = require('mongoose');
 
 const connectDB = async () => {
+  // Reuse existing connection if already open/connecting (vital for serverless)
+  if (mongoose.connection.readyState >= 1) {
+    return;
+  }
+
   const uri = process.env.MONGO_URI;
 
   if (!uri) {
-    console.error('[MongoDB] MONGO_URI is not set in .env — aborting.');
-    process.exit(1);
+    console.error('[MongoDB] MONGO_URI is not set in environment variables.');
+    if (!process.env.VERCEL) {
+      process.exit(1);
+    }
+    return;
   }
 
   try {
@@ -16,7 +24,9 @@ const connectDB = async () => {
     console.log(`[MongoDB] Connected to Atlas: ${conn.connection.host}`);
   } catch (err) {
     console.error('[MongoDB] Connection failed:', err.message);
-    process.exit(1);
+    if (!process.env.VERCEL) {
+      process.exit(1);
+    }
   }
 };
 
