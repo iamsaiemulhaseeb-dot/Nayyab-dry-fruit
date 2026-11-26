@@ -1,6 +1,9 @@
 import { PRODUCTS_DATA } from '../data/products';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const isClient = typeof window !== 'undefined';
+const isLocalhost = isClient && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+
+const API_BASE_URL = import.meta.env.VITE_API_URL || (isLocalhost ? 'http://localhost:5000/api' : '/api');
 
 /**
  * Fetch all dry fruits products from the backend API.

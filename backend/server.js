@@ -9,7 +9,12 @@ const connectDB = require('./config/db');
 dotenv.config({ path: path.join(__dirname, '.env') });
 
 // Connect to MongoDB Atlas
-connectDB();
+connectDB().then(() => {
+  const { ensureDefaultAdmin } = require('./controllers/authController');
+  ensureDefaultAdmin();
+}).catch((err) => {
+  console.warn('[DB Init Warning]', err.message);
+});
 
 // Ensure the uploads directory exists for product images (safely ignore in read-only serverless environments)
 const UPLOADS_DIR = path.join(__dirname, '..', 'public', 'uploads');
